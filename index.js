@@ -2,10 +2,20 @@ const express = require("express")
 const app = express()
 
 const { Pool } = require("pg")
-const pool = new Pool({
-	connectionString: process.env.DATABASE_URL || "postgres://robotechnic@localhost:5432/pixelMailTracker",
-	ssl: process.env.DATABASE_URL ? true : false
-})
+if (process.env.DATABASE_URL) {
+	const pool = new Pool({
+		connectionString: process.env.DATABASE_URL,
+		ssl: {
+			rejectUnauthorized: false
+		}
+	})
+} else {
+	const pool = new Pool({
+		connectionString: "postgres://robotechnic@localhost:5432/pixelMailTracker",
+		ssl: false
+	})
+}
+
 
 const helmet = require("helmet")
 app.use(helmet())
