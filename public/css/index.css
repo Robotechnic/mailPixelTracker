@@ -1,0 +1,76 @@
+body {
+	color: #d3d3d3;
+	background:#1F2123;
+}
+
+header {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	border-bottom: 2px solid #1A74E2;
+	margin-bottom: 20px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+input {
+	color: #d3d3d3;
+	padding: .5em;
+	border:none;
+	border-bottom: solid #d3d3d3 1px;
+	background: #101010;
+}
+
+input[type="submit"] {
+	border: solid #d3d3d3 1px;
+	transition:  .5s background;
+	cursor: pointer;
+}
+
+input[type="submit"]:hover {
+	background: #303030;
+}
+
+section {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+thead {
+	background: #101010;
+}
+
+tr {
+	border-collapse: collapse;
+}
+
+td {
+	border: 1px solid #1A74E2;
+	padding: 5px;
+	font-size: 16px;
+}
+
+.copyButton {
+	margin: 0;
+	padding: .5em;
+	background: transparent;
+	color: #d3d3d3;
+	cursor: pointer;
+	border: none;
+	width: 100%;
+	height: 100%;
+}
+
+.copyButton.copied {
+	transition:  .5s background;
+	background: #01b301;
+}

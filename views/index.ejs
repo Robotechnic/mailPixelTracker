@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pixel tracker</title>
+	<link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+	<header>
+		<h1>Pixel Manager</h1>
+	</header>
+	<section>
+		<form method="POST" action="#">
+			<h2>Créer un pixel</h2>
+			<label for="name">Nom du pixel :</label>
+			<input type="text" id="userName" name="userName" required/>
+			<input type="submit" value="Créer le pixel">
+		</form>
+	</section>
+	<% if (!error) { %>
+		<section>
+			<h2>Pixels actifs :</h2>
+			<% if (locals.result) { %>
+			<table>
+				<thead>
+					<tr>
+						<td>Id</td>
+						<td>Nom du destinataire</td>
+						<td>Nombre de vues</td>
+						<td>Dernière vue</td>
+						<td>Copier le lien</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% for (pixel of result) {%>
+						<tr>
+							<td><%=pixel.id%></td>
+							<td><%=pixel.username%></td>
+							<td><%=pixel.seen - 1%></td>
+							<td><%=pixel.lastsee.toLocaleTimeString("fr-FR")+" "+pixel.lastsee.toLocaleDateString("fr-FR")%></td>
+							<td>
+								<button 
+									class="copyButton"
+									pixelId="<%=pixel.id%>"
+								>
+									Copier
+								</button>
+							</td>
+						</tr>
+					<% } %>
+				</tbody>
+			</table>
+			<% } else { %>
+				<p> Il n'y a pas de pixels actifs pour le moment</p>
+			<% } %>
+		</section>
+	<% } else { %>
+		<section>
+			<h2>An error appened</h2>
+		</section>
+	<% } %>
+	<script src="/js/copyClipboard.js"></script>
+</body>
+</html>
