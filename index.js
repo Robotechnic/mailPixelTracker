@@ -2,19 +2,22 @@ const express = require("express")
 const app = express()
 
 const { Pool } = require("pg")
+let settings
 if (process.env.DATABASE_URL) {
-	const pool = new Pool({
+	settings = {
 		connectionString: process.env.DATABASE_URL,
 		ssl: {
 			rejectUnauthorized: false
 		}
-	})
+	}
 } else {
-	const pool = new Pool({
+	settings = {
 		connectionString: "postgres://robotechnic@localhost:5432/pixelMailTracker",
 		ssl: false
-	})
+	}
 }
+
+const pool = new Pool(settings)
 
 
 const helmet = require("helmet")
